@@ -1,11 +1,99 @@
 // ReSharper disable CppNonReclaimedResourceAcquisition
-#include "dynamic_polymorphism.h"
+#include "animals.h"
 
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
+#include "common.h"
 
 
+// Tests
+void test_animals()
+{
+	const unsigned int seed = time(0);
+	srand(seed);
+
+	printf("three animals:\n");
+	test_three_animals();
+	printf("\n");
+
+	printf("animals on stack:\n");
+	test_animal_on_stack();
+	printf("\n");
+
+	const int n = 5;
+	printf("n=%d animals:\n", n);
+	test_n_animals(5);
+}
+
+void test_three_animals(void)
+{
+	struct animal* hamlet = create_dog("Hamlet");
+	struct animal* ophelia = create_cat("Ophelia");
+	struct animal* polonius = create_dog("Polonius");
+
+	print_greeting(hamlet);
+	print_greeting(ophelia);
+	print_greeting(polonius);
+
+	print_menu(hamlet);
+	print_menu(ophelia);
+	print_menu(polonius);
+
+	free(hamlet);
+	free(ophelia);
+	free(polonius);
+}
+
+void test_n_animals(const int n)
+{
+	const int size_of_name_container = 20;
+	char* name = (char*)calloc(size_of_name_container, sizeof(char));
+
+
+	for (int i = 0; i < n; ++i)
+	{
+		if (name != NULL)
+		{
+			struct animal* animal;
+
+			sprintf_s(name, size_of_name_container, "animal %d", i);
+			switch (rand() % 2)
+			{
+			case 0:
+				animal = create_dog(name);
+				break;
+
+			default:
+				animal = create_cat(name);
+				break;
+			}
+
+			if (animal != NULL)
+			{
+				print_greeting(animal);
+				print_menu(animal);
+
+				free(animal);
+			}
+			else
+			{
+				exit(MALLOC_FAILED);
+			}
+		}
+		else
+		{
+			exit(MALLOC_FAILED);
+		}
+	}
+
+	free(name);
+}
+
+
+// Overrides
 const char* dog_greet(void)
 {
 	return "woof!";
@@ -25,6 +113,7 @@ const char* cat_menu(void)
 }
 
 
+// Virtual
 typedef const char* (*animal_function)();
 
 const int num_of_animal_functions = 2;
@@ -116,14 +205,15 @@ struct animal* create_cat(char* name)
 }
 
 
+// Stack test
 void test_animal_on_stack(void)
 {
-	struct animal richard_the_dog =
+	struct animal richard_the_stack_guardian =
 	{
 		"Richard",
 		dog_functions
 	};
 
-	print_greeting(&richard_the_dog);
-	print_menu(&richard_the_dog);
+	print_greeting(&richard_the_stack_guardian);
+	print_menu(&richard_the_stack_guardian);
 }
