@@ -144,13 +144,17 @@
   <ItemGroup>
     <ClInclude Include="common.h" />
     <ClInclude Include="animals.h" />
+    <ClInclude Include="constructor_polymorphism_behaviour.hpp" />
+    <ClInclude Include="manual_vf_table_lookup.hpp" />
     <ClInclude Include="memory_cost.hpp" />
     <ClInclude Include="time_cost.hpp" />
     <ClInclude Include="unary_functions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animals.c" />
+    <ClCompile Include="constructor_polymorphism_behaviour.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="manual_vf_table_lookup.cpp" />
     <ClCompile Include="memory_cost.cpp" />
     <ClCompile Include="time_cost.cpp" />
     <ClCompile Include="unary_functions.c" />

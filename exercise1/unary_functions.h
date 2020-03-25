@@ -4,7 +4,10 @@
 
 void test_unary_functions(void);
 
+
 /*
+ * Answer for task 2:
+ *
  * Unary_Function is abstract because value_at is a pure virtual function.
  * Unary_Function virtual table contains a null pointer for value_at and Unary_Function::negative_value_at.
  *

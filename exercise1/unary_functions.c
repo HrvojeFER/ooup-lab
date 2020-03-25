@@ -109,6 +109,8 @@ double unary_function_negative_value_at(void* args, void* members, void* virtual
 
 // Virtual
 /*
+ * Answer for task 2:
+ *
  * Unary_Function is abstract because value_at is a pure virtual function.
  * Unary_Function virtual table contains a null pointer for value_at and Unary_Function::negative_value_at.
  *

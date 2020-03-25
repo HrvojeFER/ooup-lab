@@ -30,6 +30,12 @@
     <ClInclude Include="time_cost.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="manual_vf_table_lookup.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constructor_polymorphism_behaviour.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="unary_functions.c">
@@ -45,6 +51,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="time_cost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="manual_vf_table_lookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="constructor_polymorphism_behaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
