@@ -3,6 +3,10 @@
 
 #include "pch.hpp"
 
+// This implementation is brittle because
+// we have to change all methods which use shape to add any additional shapes
+// It violates the open-closed principle.
+
 namespace ooup_lab
 {
 	namespace exercise2
