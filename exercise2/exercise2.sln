@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++", "C++\C++.vcxproj", "{4BAC48B2-9A6F-41D1-A512-CE478215C138}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Task 0, 1, 2", "C++\C++.vcxproj", "{4BAC48B2-9A6F-41D1-A512-CE478215C138}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Python", "Python\Python.pyproj", "{489CFA04-98E4-44FE-98BA-5DD396F76F91}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Task 3, 4, 5, 6", "Python\Task 3, 4, 5, 6.pyproj", "{489CFA04-98E4-44FE-98BA-5DD396F76F91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
