@@ -20,12 +20,12 @@ def my_max_main():
         "Gle", "malu", "vocku", "poslije", "kise",
         "Puna", "je", "kapi", "pa", "ih", "njise"], lambda x: x))
 
-    # I can use D.get here because it is already bound to the object D and therefore 
-    # the interpreter inserts D as the self argument.
-    D = {'burek': 8, 'buhtla': 5}
-    print('max price: %s' % my_max(D, D.get))
+    # I can use d.get here because it is already bound to the object d and therefore
+    # the interpreter inserts d as the self argument.
+    d = {'burek': 8, 'buhtla': 5}
+    print('max price: %s' % my_max(d, d.get))
     # I can bind the dictionary method get explicitly, if I want to.
-    print('max price (explicit bind): %s' % my_max(D, lambda x: dict.get(D, x)))
+    print('max price (explicit bind): %s' % my_max(d, lambda x: dict.get(d, x)))
 
     people = [('Ana', 'Ivić'), ('Ana', 'Sanjić'), ('Ivan', 'Ivić')]
     print('max person (by surname, then name): %s' % str(my_max(people, lambda x: x[1] + x[0])))
