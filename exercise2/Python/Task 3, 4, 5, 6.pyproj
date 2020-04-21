@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>Task 3, 4, 5, 6</Name>
     <RootNamespace>Python</RootNamespace>
+    <InterpreterId>CondaEnv|CondaEnv|notebook_env</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,9 @@
     <Compile Include="my_max.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|notebook_env" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
