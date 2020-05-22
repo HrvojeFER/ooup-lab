@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="env">
+      <UniqueIdentifier>{77b3d01b-c4c1-413f-aaf6-47409609319d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="parrot\parrot.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="parrot\pch.h">
+      <Filter>env</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="parrot\parrot.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="parrot\dllmain.c">
+      <Filter>env</Filter>
+    </ClCompile>
+    <ClCompile Include="parrot\pch.c">
+      <Filter>env</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

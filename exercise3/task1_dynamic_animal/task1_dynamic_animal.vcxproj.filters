@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{6fc36323-3d17-4a76-ae13-fa35a59c969f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="env">
+      <UniqueIdentifier>{aec84f51-7604-4e6c-8aee-b4ef3dce8519}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="animal\animal.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="animal\pch.h">
+      <Filter>env</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="animal\animal.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="animal\pch.c">
+      <Filter>env</Filter>
+    </ClCompile>
+    <ClCompile Include="animal\dllmain.c">
+      <Filter>env</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
