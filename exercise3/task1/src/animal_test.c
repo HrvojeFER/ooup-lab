@@ -21,7 +21,10 @@ void test_animals(
 
         if (create_on_stack[i])
         {
-            animal = (struct animal*)_malloca(get_animal_type_size(animal_types[i]));
+            printf("Creating %s the %s on the stack...\n", 
+                animal_names[i], animal_types[i]);
+
+        	animal = (struct animal*)_malloca(get_animal_type_size(animal_types[i]));
         	if (!animal)
         	{
                 exit(ANIMAL_ALLOCATION_FAILED);
@@ -47,7 +50,7 @@ void test_animals(
         animal_print_menu(animal);
 
     	
-    	free(animal);
+    	if (!create_on_stack[i]) free(animal);
     }
 
     printf("\n\n");
