@@ -22,5 +22,20 @@
     <ClInclude Include="src\pch.hpp">
       <Filter>env</Filter>
     </ClInclude>
+    <ClInclude Include="src\animal.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\factory.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\parrot.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tiger.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\animal_types.hpp">
+      <Filter>env</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

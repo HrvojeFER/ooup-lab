@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{F0FF4C5D-5C7C-4DE0-8536-C205AF2E801C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>task13</RootNamespace>
+    <RootNamespace>oouplab</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,23 +72,27 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\intermediates</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\intermediates\</IntDir>
+    <TargetName>animal_factory</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\intermediates</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\intermediates\</IntDir>
+    <TargetName>animal_factory</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\intermediates</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\intermediates\</IntDir>
+    <TargetName>animal_factory</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\</OutDir>
-    <IntDir>$(SolutionDir)$(ConfigurationName)\$(PlatformName)\$(ProjectName)\intermediates</IntDir>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\$(ProjectName)\intermediates\</IntDir>
+    <TargetName>animal_factory</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -171,7 +175,12 @@
     <ClCompile Include="src\pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\animal.hpp" />
+    <ClInclude Include="src\animal_types.hpp" />
+    <ClInclude Include="src\factory.hpp" />
+    <ClInclude Include="src\parrot.hpp" />
     <ClInclude Include="src\pch.hpp" />
+    <ClInclude Include="src\tiger.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
