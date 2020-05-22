@@ -4,7 +4,16 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <StartupObject>task2.Program</StartupObject>
+    <StartupObject></StartupObject>
+    <RootNamespace>OoupLab.TextEditor</RootNamespace>
+    <AssemblyName>OoupLab.TextEditor</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="test.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

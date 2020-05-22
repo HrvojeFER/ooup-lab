@@ -1,11 +1,12 @@
 using System;
 using System.Windows.Forms;
 
-// ReSharper disable once CheckNamespace
-namespace task2
+namespace OoupLab.TextEditor
 {
+    // ReSharper disable once UnusedMember.Global
     internal static class Program
     {
+        // ReSharper disable once UnusedMember.Local
         [STAThread]
         private static void Main()
         {

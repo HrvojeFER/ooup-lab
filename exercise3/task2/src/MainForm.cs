@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace task2
+namespace OoupLab.TextEditor
 {
     public partial class MainForm : Form
     {
@@ -8,6 +8,5 @@ namespace task2
         {
             InitializeComponent();
         }
-
     }
 }
