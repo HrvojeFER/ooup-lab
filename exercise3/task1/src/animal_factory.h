@@ -6,6 +6,9 @@
 #include "pch.h"
 
 
+size_t get_animal_type_size(const char* const type);
+void construct_animal(const char* const type, struct animal* animal, const char* name);
+
 struct animal* create_animal(const char* type, const char* name);
 
 

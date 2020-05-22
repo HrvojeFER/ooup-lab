@@ -11,41 +11,87 @@ const size_t dll_extension_length = 4;
 // current_folder_relative_path_length + dll_extension_length
 const size_t library_name_added_chars_length = 6;
 
-
 int fill_with_library_file_path(
 	char* const to_fill, 
 	const int to_fill_size,
 	const char* const library_name)
 {
+	// Tells strcat_s to concatenate from the beginning of the string.
 	to_fill[0] = '\0';
 
-	int error_number = strcat_s(to_fill, to_fill_size, current_folder_relative_path);
-	if (error_number) return error_number;
-	error_number = strcat_s(to_fill, to_fill_size, library_name);
-	if (error_number) return error_number;
-	error_number = strcat_s(to_fill, to_fill_size, dll_extension);
-	if (error_number) return error_number;
+	int error_code = strcat_s(to_fill, to_fill_size, current_folder_relative_path);
+	if (error_code) return error_code;
+	error_code = strcat_s(to_fill, to_fill_size, library_name);
+	if (error_code) return error_code;
+	error_code = strcat_s(to_fill, to_fill_size, dll_extension);
 
-	return error_number;
+	return error_code;
 }
 
 
-const char* const factory_method_name_prefix = "create_";
-const size_t factory_method_name_prefix_length = 7;
+const char* const factory_function_name_prefix = "create_";
+const size_t factory_function_name_prefix_length = 7;
 
-int fill_with_library_create_method_name(
+int fill_with_create_function_name(
 	char* const to_fill, 
 	const int to_fill_size, 
 	const char* const library_name)
 {
+	// Tells strcat_s to concatenate from the beginning of the string.
 	to_fill[0] = '\0';
 
-	int error_number = strcat_s(to_fill, to_fill_size, factory_method_name_prefix);
-	if (error_number) return error_number;
-	error_number = strcat_s(to_fill, to_fill_size, library_name);
-	if (error_number) return error_number;
+	int error_code = strcat_s(to_fill, to_fill_size, factory_function_name_prefix);
+	if (error_code) return error_code;
+	error_code = strcat_s(to_fill, to_fill_size, library_name);
 
-	return error_number;
+	return error_code;
+}
+
+
+const char* const get_size_function_name_prefix = "get_";
+const size_t get_size_function_name_prefix_length = 4;
+const char* const get_size_function_name_suffix = "_size";
+const size_t get_size_function_name_suffix_length = 5;
+// get_size_function_name_prefix_length + get_size_function_name_suffix_length
+const size_t get_size_function_added_chars_length = 9;
+
+int fill_with_get_size_function_name(
+	char* const to_fill,
+	const int to_fill_size,
+	const char* const library_name)
+{
+	// Tells strcat_s to concatenate from the beginning of the string.
+	to_fill[0] = '\0';
+	
+	int error_code = strcat_s(to_fill, to_fill_size, get_size_function_name_prefix);
+	if (error_code) return error_code;
+	error_code = strcat_s(to_fill, to_fill_size, library_name);
+	if (error_code) return error_code;
+	error_code = strcat_s(to_fill, to_fill_size, get_size_function_name_suffix);
+
+	return error_code;
+}
+
+
+const char* const construct_function_name_prefix = "construct_";
+const size_t construct_function_name_prefix_length = 10;
+// For consistency.
+const size_t construct_function_name_added_chars_length = 10;
+
+int fill_with_construct_function_name(
+	char* const to_fill,
+	const int to_fill_size,
+	const char* const library_name)
+{
+	// Tells strcat_s to concatenate from the beginning of the string.
+	to_fill[0] = '\0';
+
+	int error_code = strcat_s(to_fill, to_fill_size, construct_function_name_prefix);
+	if (error_code) return error_code;
+	error_code = strcat_s(to_fill, to_fill_size, library_name);
+	if (error_code) return error_code;
+
+	return error_code;
 }
 
 
@@ -57,10 +103,10 @@ void fill_string(
 	const char* fill_argument,
 	const fill_string_function fill)
 {
-	const int error_number = fill(to_fill, to_fill_size, fill_argument);
-	if (error_number)
+	const int error_code = fill(to_fill, to_fill_size, fill_argument);
+	if (error_code)
 	{
-		exit(error_number);
+		exit(error_code);
 	}
 }
 
@@ -93,38 +139,119 @@ HMODULE get_library_handle(const char* const library_name, const size_t library_
 }
 
 
+
+typedef fill_string_function fill_function_name_function;
+
+void* get_library_function(
+	const HMODULE library_handle,
+	const char* const library_name,
+	const size_t function_name_length,
+	const fill_function_name_function fill)
+{
+	char* library_function_name = (char*)malloc(function_name_length + 1);
+
+	fill_string(
+		library_function_name,
+		function_name_length,
+		library_name,
+		fill);
+
+	printf("Reading %s function address...\n", library_function_name);
+
+	// ReSharper disable once CppLocalVariableMayBeConst
+	void* requested_function = (void*)GetProcAddress(library_handle, library_function_name);
+	free(library_function_name);
+
+	if (!requested_function)
+	{
+		exit(FUNCTION_NOT_FOUND);
+	}
+
+	return requested_function;
+}
+
+
 typedef void* (__cdecl *library_create_function)(const char*);
 
 library_create_function get_library_create_function(
-	const HMODULE library_handle, const char* const library_name, const size_t library_array_size)
+	const HMODULE library_handle, 
+	const char* const library_name, 
+	const size_t library_name_array_size)
 {
 	const size_t library_create_method_name_length =
-		library_array_size + factory_method_name_prefix_length;
-	// + 1 for null-terminator
-	char* library_create_method_name = (char*)malloc(library_create_method_name_length + 1);
+		library_name_array_size + factory_function_name_prefix_length;
 
-	fill_string(
-		library_create_method_name,
-		library_create_method_name_length,
+	return get_library_function(
+		library_handle, 
 		library_name,
-		fill_with_library_create_method_name);
-
-	printf("Reading %s function address...\n", library_create_method_name);
-
-	// ReSharper disable once CppLocalVariableMayBeConst
-	library_create_function create_function =
-		(library_create_function)GetProcAddress(
-			library_handle, library_create_method_name);
-	free(library_create_method_name);
-
-	if(!create_function)
-	{
-		exit(CREATE_METHOD_NOT_FOUND);
-	}
-	
-	return create_function;
+		library_create_method_name_length,
+		fill_with_create_function_name);
 }
 
+
+typedef size_t(__cdecl *library_get_size_function)(void);
+
+library_get_size_function get_library_get_size_function(
+	const HMODULE library_handle, 
+	const char* const library_name, 
+	const size_t library_name_array_size)
+{
+	const size_t library_get_size_function_name_length =
+		library_name_array_size + get_size_function_added_chars_length;
+
+	return get_library_function(
+		library_handle, 
+		library_name,
+		library_get_size_function_name_length,
+		fill_with_get_size_function_name);
+}
+
+
+typedef int(__cdecl* library_construct_function)(void*, const char*);
+
+library_construct_function get_library_construct_function(
+	const HMODULE library_handle,
+	const char* const library_name,
+	const size_t library_name_array_size)
+{
+	const size_t library_construct_function_name_length =
+		library_name_array_size + construct_function_name_added_chars_length;
+
+	return get_library_function(
+		library_handle,
+		library_name,
+		library_construct_function_name_length,
+		fill_with_construct_function_name);
+}
+
+
+
+size_t get_required_size(const char* library_name)
+{
+	const size_t library_name_array_size = strlen(library_name) + 1;
+
+	const HMODULE library_handle = get_library_handle(library_name, library_name_array_size);
+	// ReSharper disable once CppLocalVariableMayBeConst
+
+
+	library_get_size_function library_get_size = get_library_get_size_function(
+		library_handle, library_name, library_name_array_size);
+
+	return library_get_size();
+}
+
+int construct(const char* library_name, void* object, const char* constructor_argument)
+{
+	const size_t library_name_array_size = strlen(library_name) + 1;
+
+	const HMODULE library_handle = get_library_handle(library_name, library_name_array_size);
+
+	// ReSharper disable once CppLocalVariableMayBeConst
+	library_construct_function library_construct = get_library_construct_function(
+		library_handle, library_name, library_name_array_size);
+
+	return library_construct(object, constructor_argument);
+}
 
 
 void* create(const char* const library_name, const char* const constructor_argument)
@@ -132,16 +259,11 @@ void* create(const char* const library_name, const char* const constructor_argum
 	const size_t library_name_array_size = strlen(library_name) + 1;
 
 	const HMODULE library_handle = get_library_handle(library_name, library_name_array_size);
-	// ReSharper disable once CppLocalVariableMayBeConst
 
+	
+	// ReSharper disable once CppLocalVariableMayBeConst
 	library_create_function library_create = get_library_create_function(
 		library_handle, library_name, library_name_array_size);
 
-	void* result = library_create(constructor_argument);
-	/*while (!FreeLibrary(library_handle))
-	{
-		printf("Failed to free library %s. Trying again...", library_name);
-	}*/
-	
-	return result;
+	return library_create(constructor_argument);
 }

@@ -12,6 +12,11 @@
 #endif
 
 
+#define ANIMAL_ALLOCATION_FAILED 200
+#define ANIMAL_CAST_FAILED 300
+
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
